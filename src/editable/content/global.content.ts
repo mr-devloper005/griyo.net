@@ -3,52 +3,53 @@ import { slot4BrandConfig } from '@/editable/theme/brand.config'
 export const globalContent = {
   site: {
     name: slot4BrandConfig.siteName,
-    tagline: slot4BrandConfig.tagline || 'Independent reading platform',
+    tagline: slot4BrandConfig.tagline || 'Local classifieds and market guides',
     domain: slot4BrandConfig.domain,
     baseUrl: slot4BrandConfig.baseUrl,
   },
   nav: {
-    tagline: 'Independent reading platform',
+    tagline: 'FOLLOW THE MARKET',
     primaryLinks: [
-      { label: 'Articles', href: '/articles' },
-      { label: 'Visuals', href: '/image-sharing' },
-      { label: 'Listings', href: '/listings' },
-      { label: 'Contact', href: '/contact' },
+      { label: 'Find', href: '/classified' },
+      { label: 'Price', href: '/listings' },
+      { label: 'Sell', href: '/contact' },
     ],
     actions: {
-      primary: { label: 'Start exploring', href: '/' },
-      secondary: { label: 'Submit', href: '/contact' },
+      primary: { label: 'Search listings', href: '/classified' },
+      secondary: { label: 'List an item', href: '/contact' },
     },
   },
   footer: {
-    tagline: 'Stories, resources, and discoverable posts',
-    description: 'A connected publishing surface for articles, visuals, listings, profiles, bookmarks, and downloadable resources.',
+    tagline: 'CLASSIFIED GARAGE',
+    description: 'Useful listings, local market notes, and practical resources for people comparing deals, services, property, jobs, vehicles, and second-hand finds.',
     columns: [
       {
-        title: 'Explore',
+        title: 'Classifieds',
         links: [
-          { label: 'Articles', href: '/articles' },
+          { label: 'Home', href: '/' },
+          { label: 'Markets', href: '/classified' },
           { label: 'Listings', href: '/listings' },
-          { label: 'Images', href: '/image-sharing' },
-          { label: 'PDF Library', href: '/pdf' },
+          { label: 'Blog', href: '/article' },
         ],
       },
       {
-        title: 'Site',
+        title: 'Resources',
         links: [
-          { label: 'About', href: '/about' },
-          { label: 'Contact', href: '/contact' },
+          { label: 'About us', href: '/about' },
+          { label: 'Data sources', href: '/pdf' },
+          { label: 'Sell your item', href: '/contact' },
+          { label: 'Help center', href: '/contact' },
         ],
       },
     ],
-    bottomNote: 'Built for clean discovery and connected publishing.',
+    bottomNote: 'Company names, images, and post details belong to their respective owners or submitters.',
   },
   commonLabels: {
-    readMore: 'Read more',
+    readMore: 'View listing',
     viewAll: 'View all',
     explore: 'Explore',
     latest: 'Latest',
     related: 'Related',
-    published: 'Published',
+    published: 'Posted',
   },
 } as const
