@@ -45,6 +45,35 @@ const getImages = (post: SitePost) => {
   return [...media, ...images, ...singles].filter(Boolean).slice(0, 14)
 }
 const getBody = (post: SitePost) => asText(getContent(post).body) || asText(getContent(post).description) || asText(getContent(post).details) || post.summary || 'Details will appear here once available.'
+const escapeHtml = (value: string) =>
+  value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;')
+
+const linkifyText = (value: string) =>
+  value.replace(/(https?:\/\/[^\s<]+)/g, (url) => {
+    const safeUrl = escapeHtml(url)
+    return `<a href="${safeUrl}" target="_blank" rel="noreferrer">${safeUrl}</a>`
+  })
+
+const linkifyMarkdown = (value: string) =>
+  value.replace(/\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g, (_match, label: string, url: string) => {
+    const safeUrl = escapeHtml(url)
+    const safeLabel = escapeHtml(label)
+    return `<a href="${safeUrl}" target="_blank" rel="noreferrer">${safeLabel}</a>`
+  })
+
+const sanitizeHtml = (value: string) =>
+  value
+    .replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '')
+    .replace(/<style[^>]*>[\s\S]*?<\/style>/gi, '')
+    .replace(/\son\w+="[^"]*"/gi, '')
+    .replace(/\son\w+='[^']*'/gi, '')
+    .replace(/\s(href|src)=["']\s*javascript:[^"']*["']/gi, '')
+
 const formatPlainText = (raw: string) => {
   const value = raw.trim()
   if (!value) return ''
