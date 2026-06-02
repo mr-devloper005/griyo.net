@@ -18,20 +18,6 @@ type StoredComment = {
 const COMMENTS_PER_PAGE = 8
 const COMMENT_KEY_PREFIX = 'slot4:article-comments:'
 
-const formatDate = (value: string) => {
-  try {
-    return new Intl.DateTimeFormat('en-IN', {
-      day: 'numeric',
-      month: 'short',
-      year: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-    }).format(new Date(value))
-  } catch {
-    return 'Just now'
-  }
-}
-
 const readCommentsFromStorage = (): StoredComment[] => {
   const items: StoredComment[] = []
   for (let index = 0; index < window.localStorage.length; index += 1) {
@@ -133,7 +119,6 @@ export default function CommentsPage() {
                 <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
                   <div>
                     <p className="font-semibold text-foreground">{item.name}</p>
-                    <p className="mt-1 text-xs text-muted-foreground">{formatDate(item.createdAt)}</p>
                   </div>
                   {item.articleSlug ? (
                     <Link href={`/article/${item.articleSlug}`} className="text-sm text-primary underline-offset-4 hover:underline">
