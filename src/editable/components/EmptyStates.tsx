@@ -37,7 +37,7 @@ export function TaskEmptyState({ taskLabel = 'posts', className }: { taskLabel?:
     <EmptyState
       className={className}
       title={`No ${taskLabel} available yet`}
-      description={`Published ${taskLabel} from the master panel will appear here automatically. The page layout stays ready even when the feed is empty.`}
+      description={`${taskLabel} from the master panel will appear here automatically. The page layout stays ready even when the feed is empty.`}
       actionLabel="Explore the site"
       actionHref="/"
     />

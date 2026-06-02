@@ -1,16 +1,3 @@
-/*
-  Editable global theme layer.
-
-  Safe for UI editors / AI tools:
-  - Full site background
-  - Global text color
-  - Selection color
-  - Scrollbar feel
-  - Article body typography accents
-
-  Do not add data fetching, scripts, or route logic here.
-*/
-
 body {
   background-color: var(--slot4-page-bg) !important;
   color: var(--slot4-page-text) !important;
@@ -18,27 +5,42 @@ body {
 }
 
 ::selection {
-  background: color-mix(in oklab, var(--slot4-accent-fill) 22%, transparent);
+  background: color-mix(in oklab, var(--slot4-accent-fill) 28%, white);
   color: var(--slot4-page-text);
 }
 
+::-webkit-scrollbar {
+  width: 12px;
+}
+
 ::-webkit-scrollbar-track {
-  background: color-mix(in oklab, var(--slot4-page-bg) 88%, white);
+  background: #f1f1f1;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: color-mix(in oklab, var(--slot4-accent) 40%, transparent);
+  background: #8e8e8e;
+  border: 3px solid #f1f1f1;
   border-radius: 999px;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: color-mix(in oklab, var(--slot4-accent) 62%, transparent);
+.article-content {
+  color: #171717;
 }
 
-.article-content h2 {
-  color: var(--slot4-accent);
+.article-content p {
+  margin: 0 0 1.1rem;
+}
+
+.article-content h2,
+.article-content h3 {
+  margin: 2rem 0 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0;
 }
 
 .article-content a {
   color: var(--slot4-accent-fill);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
