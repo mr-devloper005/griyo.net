@@ -4,9 +4,10 @@ import { CheckCircle2, ClipboardList, Search, UserPlus } from 'lucide-react'
 import { buildPageMetadata } from '@/lib/seo'
 import { EditableSiteShell } from '@/editable/shell/EditableSiteShell'
 import { EditableLocalSignupForm } from '@/editable/components/EditableLocalAuthForms'
+import { pagesContent } from '@/editable/content/pages.content'
 
 export async function generateMetadata(): Promise<Metadata> {
-  return buildPageMetadata({ path: '/signup', title: 'Sign up', description: 'Local signup page for this public site.' })
+  return buildPageMetadata({ path: '/signup', title: 'Sign up', description: pagesContent.auth.signup.metadataDescription })
 }
 
 export default function SignupPage() {

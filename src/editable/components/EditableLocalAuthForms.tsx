@@ -2,6 +2,7 @@
 
 import { FormEvent, useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { pagesContent } from '@/editable/content/pages.content'
 
 const USERS_KEY = 'slot4:local-auth-users'
 const SESSION_KEY = 'slot4:local-auth-session'
@@ -46,12 +47,12 @@ export function EditableLocalLoginForm() {
     const user = readUsers().find((item) => item.email.toLowerCase() === normalizedEmail)
     if (!user || user.password !== password) {
       setStatus('error')
-      setMessage('No local account found with these details. Create an account first, then login.')
+      setMessage(pagesContent.auth.login.noAccount)
       return
     }
     saveSession(user)
     setStatus('success')
-    setMessage(`Logged in locally as ${user.name}. Redirecting...`)
+    setMessage(pagesContent.auth.login.success)
     window.setTimeout(() => router.push('/'), 500)
   }
 
@@ -79,12 +80,12 @@ export function EditableLocalSignupForm() {
     const normalizedEmail = email.trim().toLowerCase()
     if (password.length < 4) {
       setStatus('error')
-      setMessage('Use at least 4 characters for local demo password.')
+      setMessage(pagesContent.auth.signup.passwordShort)
       return
     }
     const users = readUsers()
     const nextUser: LocalUser = {
-      name: normalizedName || normalizedEmail.split('@')[0] || 'Local User',
+      name: normalizedName || normalizedEmail.split('@')[0] || 'Member',
       email: normalizedEmail,
       password,
       createdAt: new Date().toISOString(),
@@ -92,7 +93,7 @@ export function EditableLocalSignupForm() {
     saveUsers([nextUser, ...users.filter((item) => item.email.toLowerCase() !== normalizedEmail)])
     saveSession(nextUser)
     setStatus('success')
-    setMessage('Local account created. Redirecting...')
+    setMessage(pagesContent.auth.signup.success)
     window.setTimeout(() => router.push('/'), 500)
   }
 

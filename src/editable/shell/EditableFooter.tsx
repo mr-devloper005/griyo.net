@@ -1,3 +1,5 @@
+'use client'
+
 import Link from 'next/link'
 import { Instagram, Mail, Play, Search } from 'lucide-react'
 import { SITE_CONFIG } from '@/lib/site-config'

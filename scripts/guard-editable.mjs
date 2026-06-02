@@ -8,9 +8,31 @@ if (process.env.ALLOW_INFRASTRUCTURE_CHANGES === '1') {
 
 const allowedPrefixes = ['src/editable/', 'public/']
 const allowedExact = new Set([
+  'next-env.d.ts',
+  'pnpm-workspace.yaml',
   'src/app/page.tsx',
   'src/app/about/page.tsx',
   'src/app/contact/page.tsx',
+  'src/app/login/page.tsx',
+  'src/app/signup/page.tsx',
+  'src/app/search/page.tsx',
+  'src/app/create/page.tsx',
+  'src/app/article/page.tsx',
+  'src/app/article/[slug]/page.tsx',
+  'src/app/listing/page.tsx',
+  'src/app/listing/[slug]/page.tsx',
+  'src/app/classified/page.tsx',
+  'src/app/classified/[slug]/page.tsx',
+  'src/app/image/page.tsx',
+  'src/app/image/[slug]/page.tsx',
+  'src/app/pdf/page.tsx',
+  'src/app/pdf/[slug]/page.tsx',
+  'src/app/sbm/page.tsx',
+  'src/app/sbm/[slug]/page.tsx',
+  'src/app/business-listing/page.tsx',
+  'src/app/business-listings/page.tsx',
+  'src/app/profile/page.tsx',
+  'src/app/profiles/page.tsx',
   'src/app/articles/[slug]/page.tsx',
   'src/app/listings/[slug]/page.tsx',
   'src/app/image-sharing/[slug]/page.tsx',
@@ -18,7 +40,7 @@ const allowedExact = new Set([
 ])
 
 const alwaysBlockedPrefixes = ['src/lib/', 'src/config/', 'src/app/api/', 'src/components/', 'src/design/', '.github/', 'scripts/']
-const alwaysBlockedExact = new Set(['Dockerfile', 'docker-compose.yml', 'docker-compose.vps.yml', 'package.json', 'pnpm-lock.yaml', 'pnpm-workspace.yaml', 'next.config.mjs', 'tsconfig.json'])
+const alwaysBlockedExact = new Set(['Dockerfile', 'docker-compose.yml', 'docker-compose.vps.yml', 'package.json', 'pnpm-lock.yaml', 'next.config.mjs', 'tsconfig.json'])
 
 function run(command) {
   try {

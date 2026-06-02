@@ -46,8 +46,13 @@ const getImages = (post: SitePost) => {
 }
 const getBody = (post: SitePost) => asText(getContent(post).body) || asText(getContent(post).description) || asText(getContent(post).details) || post.summary || 'Details will appear here once available.'
 const formatPlainText = (raw: string) => {
-  if (/<[a-z][\s\S]*>/i.test(raw)) return raw.replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '')
-  return raw.split(/\n{2,}/).map((part) => `<p>${part.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</p>`).join('')
+  const value = raw.trim()
+  if (!value) return ''
+  if (/<[a-z][\s\S]*>/i.test(value)) return sanitizeHtml(linkifyMarkdown(value))
+  return value
+    .split(/\n{2,}/)
+    .map((part) => `<p>${linkifyText(escapeHtml(part).replace(/\n/g, '<br />'))}</p>`)
+    .join('')
 }
 const categoryOf = (post: SitePost, fallback: string) => asText(getContent(post).category) || post.tags?.[0] || fallback
 const listingStatus = (post: SitePost) => getField(post, ['condition', 'availability', 'type']) || 'Contact seller'

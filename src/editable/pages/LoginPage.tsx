@@ -4,9 +4,10 @@ import { Bookmark, LogIn, Search, ShieldCheck } from 'lucide-react'
 import { buildPageMetadata } from '@/lib/seo'
 import { EditableSiteShell } from '@/editable/shell/EditableSiteShell'
 import { EditableLocalLoginForm } from '@/editable/components/EditableLocalAuthForms'
+import { pagesContent } from '@/editable/content/pages.content'
 
 export async function generateMetadata(): Promise<Metadata> {
-  return buildPageMetadata({ path: '/login', title: 'Login', description: 'Local login page for this public site.' })
+  return buildPageMetadata({ path: '/login', title: 'Login', description: pagesContent.auth.login.metadataDescription })
 }
 
 export default function LoginPage() {
