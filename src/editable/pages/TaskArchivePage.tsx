@@ -37,7 +37,15 @@ const getImages = (post: SitePost) => {
   return [...media, ...images, ...singles].filter(Boolean)
 }
 const getImage = (post: SitePost) => getImages(post)[0] || '/placeholder.svg?height=900&width=1200'
-const getSummary = (post: SitePost) => (post.summary || asText(getContent(post).description) || asText(getContent(post).excerpt) || asText(getContent(post).body) || '').replace(/<[^>]*>/g, ' ')
+const stripHtml = (value: string) => {
+  let text = value.replace(/<[^>]*>/g, ' ')
+  text = text.replace(/&#(\d+);/g, (_, n) => String.fromCharCode(Number(n)))
+  text = text.replace(/&#x([0-9a-fA-F]+);/g, (_, h) => String.fromCharCode(parseInt(h, 16)))
+  text = text.replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>')
+  text = text.replace(/<[^>]*>/g, ' ')
+  return text.replace(/\s+/g, ' ').trim()
+}
+const getSummary = (post: SitePost) => stripHtml(post.summary || asText(getContent(post).description) || asText(getContent(post).excerpt) || asText(getContent(post).body) || '')
 const getCategory = (post: SitePost, fallback: string) => asText(getContent(post).category) || post.tags?.[0] || fallback
 const listingStatus = (post: SitePost, index: number) => getField(post, ['condition', 'availability', 'type']) || ['Details inside', 'Contact seller', 'Recently listed', 'Compare offer', 'Local pickup', 'Open listing'][index % 6]
 const locationFor = (post: SitePost, index: number) => getField(post, ['location', 'address', 'city']) || ['Bellingham, Washington, USA', 'Mattituck, New York, USA', 'Bridgeton, Missouri, USA', 'Salt Lake City, Utah, USA'][index % 4]

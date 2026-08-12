@@ -9,7 +9,7 @@ import { SITE_CONFIG, type TaskKey } from '@/lib/site-config'
 import type { SitePost } from '@/lib/site-connector'
 import { EditableSiteShell } from '@/editable/shell/EditableSiteShell'
 import { pagesContent } from '@/editable/content/pages.content'
-import { getEditablePostImage, getEditableExcerpt, getEditableCategory, postHref } from '@/editable/cards/PostCards'
+import { getEditablePostImage, getEditableCategory } from '@/editable/cards/PostCards'
 
 export const revalidate = 3
 
